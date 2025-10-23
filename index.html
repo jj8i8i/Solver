@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>180IQ Game Solver</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0KOVEMVIARMTysDbMVHr5NBYoBTAI6Di9g/joScsTJSnZOYPFDA45" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 180IQ Game Solver</h1>
+            <p>ป้อนตัวเลขและเป้าหมาย แล้วเราจะหาวิธีที่ดีที่สุดให้!</p>
+        </header>
+
+        <div class="settings-grid">
+            <div class="setting-card">
+                <label for="mode">โหมด</label>
+                <select id="mode">
+                    <option value="4">4 ตัว 2 หลัก</option>
+                    <option value="5">5 ตัว 3 หลัก</option>
+                </select>
+            </div>
+            <div class="setting-card">
+                <label for="level">ระดับ</label>
+                <select id="level">
+                    <option value="B">Level B (+ - × ÷)</option>
+                    <option value="1">Level 1 (...^)</option>
+                    <option value="2">Level 2 (...√)</option>
+                    <option value="3">Level 3 (...! Σ)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>ตัวเลข</h2>
+            <div id="inputs-container" class="input-group"></div>
+        </div>
+
+        <div class="card">
+            <h2>เป้าหมาย</h2>
+            <input type="number" id="target" class="target-input" placeholder="ใส่ผลลัพธ์">
+        </div>
+
+        <button id="solve-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M11.9999 1.5C14.0622 1.5 16.0375 2.21071 17.6249 3.51832L19.262 2.37524C19.5936 2.14446 20.0732 2.22232 20.304 2.55391C20.5348 2.8855 20.4569 3.36509 20.1253 3.59587L18.4882 4.73895C19.7893 6.33783 20.4999 8.32971 20.4999 10.395C20.4999 16.0319 15.8268 20.705 10.1899 20.705C4.55301 20.705 -0.120091 16.0319 -0.120091 10.395C-0.120091 4.75808 4.55301 0.0849832 10.1899 0.0849832C10.7932 0.0849832 11.3934 0.136081 11.987 0.236682C12.0123 0.241163 12.0306 0.247239 12.0418 0.254883L11.9999 1.5ZM12.1891 10.395L12.1891 14.395C12.1891 14.9473 11.7414 15.395 11.1891 15.395C10.6368 15.395 10.1891 14.9473 10.1891 14.395L10.1891 11.395L6.18909 11.395C5.63681 11.395 5.18909 10.9473 5.18909 10.395C5.18909 9.84271 5.63681 9.39499 6.18909 9.39499L10.1891 9.39499L10.1891 5.39499C10.1891 4.84271 10.6368 4.39499 11.1891 4.39499C11.7414 4.39499 12.1891 4.84271 12.1891 5.39499L12.1891 9.39499L16.1891 9.39499C16.7414 9.39499 17.1891 9.84271 17.1891 10.395C17.1891 10.9473 16.7414 11.395 16.1891 11.395L12.1891 10.395Z"></path></svg>
+            <span>คำนวณ</span>
+        </button>
+        
+        <div id="results-container" class="hidden">
+            <h2>ผลลัพธ์</h2>
+            <div id="main-solution-display"></div>
+            <div id="solution-switcher" class="solution-switcher"></div>
+            <div id="closest-solution"></div>
+            <div id="no-solution"></div>
+            <div id="spinner" class="spinner hidden"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
