@@ -1,0 +1,179 @@
+/* ===== Kanit Font Import ===== */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
+
+/* ===== CSS Variables for Theming ===== */
+:root {
+    --bg-color: #f4f7fe;
+    --card-color: rgba(255, 255, 255, 0.75);
+    --text-color: #2a2a4a;
+    --subtle-text: #6a6a8a;
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-color: #6a7ee3;
+    --primary-hover: #5a6cc1;
+    --border-color: rgba(200, 200, 220, 0.4);
+    --input-bg: rgba(240, 240, 250, 0.8);
+    --shadow-color: rgba(102, 126, 234, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #12121c;
+        --card-color: rgba(28, 28, 48, 0.7);
+        --text-color: #e0e1e4;
+        --subtle-text: #9a9ab0;
+        --border-color: rgba(80, 80, 100, 0.4);
+        --input-bg: rgba(40, 40, 60, 0.8);
+        --shadow-color: rgba(102, 126, 234, 0.1);
+    }
+}
+
+/* ===== Base Styles & Background ===== */
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- Decorative Background Blobs --- */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+}
+body::before {
+    width: 300px;
+    height: 300px;
+    background: #764ba2;
+    top: -100px;
+    left: -100px;
+}
+body::after {
+    width: 250px;
+    height: 250px;
+    background: #667eea;
+    bottom: -80px;
+    right: -80px;
+}
+
+/* ===== Main Container & Animations ===== */
+.container {
+    width: 100%;
+    max-width: 500px;
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Typography & Header ===== */
+header { text-align: center; margin-bottom: 32px; }
+h1 { font-size: 2.25rem; font-weight: 700; margin: 0; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+h2 { font-size: 1.2rem; color: var(--subtle-text); margin-bottom: 16px; font-weight: 500; }
+h3 { font-size: 1.1rem; margin-top: 0; margin-bottom: 12px; font-weight: 500; color: var(--text-color); }
+p { color: var(--subtle-text); margin: 8px 0 0; font-size: 1rem; }
+
+/* ===== Cards & Layout ===== */
+.card, .setting-card {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px -5px var(--shadow-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.setting-card { padding: 16px; }
+
+/* ===== Form Elements ===== */
+label { display: block; font-size: 0.875rem; color: var(--subtle-text); margin-bottom: 8px; font-weight: 500; }
+select {
+    width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color);
+    background-color: var(--input-bg); color: var(--text-color); font-family: 'Kanit', sans-serif; font-size: 1rem;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236a6a8a' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+.input-group { display: flex; gap: 12px; justify-content: space-around; }
+.num-input, .target-input {
+    width: 100%; height: 64px; text-align: center; font-size: 2.25rem; font-weight: 600;
+    border-radius: 16px; border: 1px solid var(--border-color); background-color: var(--input-bg); color: var(--text-color);
+    transition: all 0.2s ease;
+}
+.num-input:focus, .target-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+.num-input::-webkit-outer-spin-button, .num-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+/* ===== Button ===== */
+button#solve-btn {
+    width: 100%; padding: 18px; font-size: 1.25rem; font-weight: 600; font-family: 'Kanit', sans-serif;
+    background: var(--primary-gradient); color: white; border: none; border-radius: 16px; cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex; justify-content: center; align-items: center; gap: 10px;
+    box-shadow: 0 4px 15px -2px var(--shadow-color);
+}
+button#solve-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px -2px var(--shadow-color); }
+button#solve-btn:active { transform: translateY(0) scale(0.98); }
+button:disabled { background: var(--subtle-text); cursor: not-allowed; box-shadow: none; transform: none; }
+
+/* ===== Results Display ===== */
+#results-container {
+    margin-top: 32px; padding: 0; background-color: transparent;
+    border: none; box-shadow: none; backdrop-filter: none;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.derivation-steps { list-style: none; padding: 0; margin: 0; }
+.derivation-steps li {
+    background-color: var(--card-color); padding: 20px; border-radius: 16px; margin-bottom: 12px; font-size: 1.5rem;
+    text-align: center; overflow-x: auto; border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px -5px var(--shadow-color);
+    animation: result-item-in 0.4s ease-out forwards; opacity: 0;
+}
+.derivation-steps li.final-step { border: 2px solid var(--primary-color); }
+
+@keyframes result-item-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Stagger animation for result steps */
+.derivation-steps li:nth-child(2) { animation-delay: 0.1s; }
+.derivation-steps li:nth-child(3) { animation-delay: 0.2s; }
+.derivation-steps li:nth-child(4) { animation-delay: 0.3s; }
+
+
+.solution-switcher {
+    margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border-color);
+    display: flex; flex-wrap: wrap; gap: 10px;
+}
+.solution-btn {
+    background-color: var(--input-bg); color: var(--text-color); border: 1px solid var(--border-color);
+    padding: 10px 16px; border-radius: 20px; cursor: pointer; transition: all 0.2s; font-size: 0.9rem; font-weight: 500;
+}
+.solution-btn.active {
+    background: var(--primary-gradient); color: white; border-color: transparent;
+    box-shadow: 0 4px 15px -5px var(--shadow-color);
+}
+
+.hidden { display: none !important; }
+.spinner { border: 4px solid var(--border-color); width: 36px; height: 36px; border-radius: 50%; border-left-color: var(--primary-color); margin: 20px auto; animation: spin 1s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
